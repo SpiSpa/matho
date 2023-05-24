@@ -17,7 +17,7 @@ count = 0
 
 #set of first 12 entries
 
-A = {master_list[0], master_list[1], master_list[2], master_list[3], master_list[4], master_list[5], master_list[6], master_list[7], master_list[8], master_list[9], master_list[10], master_list[11], master_list[12], master_list[13], master_list[14], master_list[15], master_list[16]} 
+A = {master_list[0], master_list[1], master_list[2], master_list[3], master_list[4], master_list[5], master_list[6], master_list[7], master_list[8], master_list[9], master_list[10], master_list[11], master_list[12]} 
 
 def makeCard():
     for count in range(25):
@@ -57,12 +57,18 @@ def makeCard():
 def checkCard():
     checkVariable = False
     for i in range(5):
-        B = {randomizedCard[i][0], randomizedCard[i][1],randomizedCard[i][2],randomizedCard[i][3],randomizedCard[i][4]}
-        if B.issubset(A) == True:
+        B = {randomizedCard[i][0], randomizedCard[i][1],randomizedCard[i][2],randomizedCard[i][3],randomizedCard[i][4]}  # all the rows in matho
+        C = {randomizedCard[0][i], randomizedCard[1][i],randomizedCard[2][i],randomizedCard[3][i],randomizedCard[4][i]}  # all the columns
+        if B.issubset(A) or C.issubset(A) == True:  #checks to see if there's a matho scored in the rows or columns in the first twelve questions
             checkVariable = True
-            print("Row Solution Found. checkVariable =", checkVariable)
+            print("Row or Column Solution Found. checkVariable =", checkVariable)
         else:
             print("Card meets requirements. checkVariable=", checkVariable)
+    D = {randomizedCard[0][0], randomizedCard[1][1], randomizedCard[2][2], randomizedCard[3][3], randomizedCard[4][4]}  # diagonal from upper left to lower right
+    E = {randomizedCard[0][4], randomizedCard[1][3], randomizedCard[2][2], randomizedCard[3][1], randomizedCard[4][0]}  # diagonal from lower left to upper right
+    if D.issubset(A) or E.issubset(A) == True:
+        checkVariable = True
+        print("Diagonal Solution found. checkVariable =", checkVariable)
     return checkVariable
 
 makeCard()
