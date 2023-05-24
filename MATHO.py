@@ -21,33 +21,33 @@ A = {master_list[0], master_list[1], master_list[2], master_list[3], master_list
 
 def makeCard():
     for count in range(25):
-        print("count:", count)
+        #print("count:", count)
         xRandom = random.randint(0,4)  #x value of a randomized location
         yRandom = random.randint(0,4)    #y value of randimized location
-        print("First Random", xRandom, yRandom)
+        #print("First Random", xRandom, yRandom)
 
         if randomizedCard[xRandom][yRandom] == "":
             randomizedCard[xRandom][yRandom] = master_list[count]   #check that the spot is empty
         
         else:
-            print("Location Already Filled")
+            #print("Location Already Filled")
             xRandom = random.randint(0,4)  # if the randomized location is already taken, try a new randomized location
             yRandom = random.randint(0,4)    #second hash
-            print("Second random", xRandom, yRandom)
+            #print("Second random", xRandom, yRandom)
 
             if randomizedCard[xRandom][yRandom] == "":
                 randomizedCard[xRandom][yRandom] = master_list[count]
-            else:
-                print("Location already filled")
+            #else:
+                #print("Location already filled")
             
                 while randomizedCard[xRandom][yRandom] != "":  # if the second randomized location is also taken, find another spot that is open
                     xcount = 0
                     yRandom = (yRandom + 7) % 5
-                    print("y-random", yRandom)
+                    #print("y-random", yRandom)
                     while randomizedCard[xRandom][yRandom] != "" and xcount !=4:
                         xRandom = (xRandom + 7) % 5
                         xcount += 1
-                        print("x-random:", xRandom, "xcount:", xcount)
+                        #print("x-random:", xRandom, "xcount:", xcount)
                     
                 randomizedCard[xRandom][yRandom] = master_list[count]
 
@@ -61,14 +61,14 @@ def checkCard():
         C = {randomizedCard[0][i], randomizedCard[1][i],randomizedCard[2][i],randomizedCard[3][i],randomizedCard[4][i]}  # all the columns
         if B.issubset(A) or C.issubset(A) == True:  #checks to see if there's a matho scored in the rows or columns in the first twelve questions
             checkVariable = True
-            print("Row or Column Solution Found. checkVariable =", checkVariable)
-        else:
-            print("Card meets requirements. checkVariable=", checkVariable)
+            #print("Row or Column Solution Found. checkVariable =", checkVariable)
+        #else:
+            #print("Card meets requirements. checkVariable=", checkVariable)
     D = {randomizedCard[0][0], randomizedCard[1][1], randomizedCard[2][2], randomizedCard[3][3], randomizedCard[4][4]}  # diagonal from upper left to lower right
     E = {randomizedCard[0][4], randomizedCard[1][3], randomizedCard[2][2], randomizedCard[3][1], randomizedCard[4][0]}  # diagonal from lower left to upper right
     if D.issubset(A) or E.issubset(A) == True:
         checkVariable = True
-        print("Diagonal Solution found. checkVariable =", checkVariable)
+        #print("Diagonal Solution found. checkVariable =", checkVariable)
     return checkVariable
 
 makeCard()
